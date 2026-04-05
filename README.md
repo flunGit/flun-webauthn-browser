@@ -8,12 +8,6 @@
 npm install flun-webauthn-browser
 ```
 
-### Deno v1.43 及以上
-
-```sh
-deno add jsr:flun-webauthn-browser
-```
-
 ### UMD
 
 本包也可通过 **unpkg** 安装，只需在页面的 `<head>` 元素中引入以下脚本;库的方法将挂载在全局对象 **`flunWebAuthnBrowser`** 上。
