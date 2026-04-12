@@ -27,8 +27,7 @@ function identifyRegistrationError({ error, options }) {
         else if (options.mediation === 'conditional' && publicKey.authenticatorSelection?.userVerification === 'required')
             // https://w3c.github.io/webauthn/#sctn-createCredential (第 22.4 步)
             return new WebAuthnError({
-                message: '自动注册期间要求用户验证，但无法执行',
-                code: 'ERROR_AUTO_REGISTER_USER_VERIFICATION_FAILURE', cause: error
+                message: '自动注册期间要求用户验证，但无法执行', code: 'ERROR_AUTO_REGISTER_USER_VERIFICATION_FAILURE', cause: error
             });
 
         else if (publicKey.authenticatorSelection?.userVerification === 'required')
@@ -75,19 +74,20 @@ function identifyRegistrationError({ error, options }) {
                 message: `信赖方 ID“${publicKey.rp.id}”对此域名无效`, code: 'ERROR_INVALID_RP_ID', cause: error
             });
     }
-    else if (error.name === 'TypeError')
-        if (publicKey.user.id.byteLength < 1 || publicKey.user.id.byteLength > 64) {
+    else if (error.name === 'TypeError') {
+        if (publicKey.user.id.byteLength < 1 || publicKey.user.id.byteLength > 64)
             // https://www.w3.org/TR/webauthn-2/#sctn-createCredential (第 5 步)
             return new WebAuthnError({
                 message: '用户 ID 长度不在 1~64 字节之间', code: 'ERROR_INVALID_USER_ID_LENGTH', cause: error
             });
-        }
-        else if (error.name === 'UnknownError')
-            // https://www.w3.org/TR/webauthn-2/#sctn-op-make-cred (第 1 步)
-            // https://www.w3.org/TR/webauthn-2/#sctn-op-make-cred (第 8 步)
-            return new WebAuthnError({
-                message: '身份验证器无法处理指定的选项，或无法创建新的凭证', code: 'ERROR_AUTHENTICATOR_GENERAL_ERROR', cause: error
-            });
+
+    }
+    else if (error.name === 'UnknownError')
+        // https://www.w3.org/TR/webauthn-2/#sctn-op-make-cred (第 1 步)
+        // https://www.w3.org/TR/webauthn-2/#sctn-op-make-cred (第 8 步)
+        return new WebAuthnError({
+            message: '身份验证器无法处理指定的选项，或无法创建新的凭证', code: 'ERROR_AUTHENTICATOR_GENERAL_ERROR', cause: error
+        });
 
     return error;
 }

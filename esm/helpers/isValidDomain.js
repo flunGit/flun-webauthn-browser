@@ -6,8 +6,10 @@
  * 正则表达式最初来源于此处,后经改编以增加 punycode 支持：
  * https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch08s15.html
  */
-export function isValidDomain(hostname) {
+function isValidDomain(hostname) {
     return (
         // 将 localhost 视为有效,因为它在安全上下文方面是没问题的,支持 punycode (ACE) 或 ASCII 标签和域名
         hostname === 'localhost' || /^((xn--[a-z0-9-]+|[a-z0-9]+(-[a-z0-9]+)*)\.)+([a-z]{2,}|xn--[a-z0-9-]+)$/i.test(hostname));
 }
+
+export { isValidDomain };

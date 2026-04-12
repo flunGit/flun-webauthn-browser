@@ -5,7 +5,9 @@ import { browserSupportsWebAuthn } from './browserSupportsWebAuthn.js';
  *
  * 该方法无法告知平台身份验证器的具体名称;
  */
-export function platformAuthenticatorIsAvailable() {
+function platformAuthenticatorIsAvailable() {
     if (!browserSupportsWebAuthn()) return new Promise(resolve => resolve(false));
     return PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
 }
+
+export { platformAuthenticatorIsAvailable };

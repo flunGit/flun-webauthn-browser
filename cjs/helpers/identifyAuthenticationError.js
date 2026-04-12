@@ -21,27 +21,24 @@ function identifyAuthenticationError({ error, options }) {
         return new WebAuthnError({ message: error.message, code: 'ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY', cause: error });
     else if (error.name === 'SecurityError') {
         const effectiveDomain = globalThis.location.hostname;
-        if (!isValidDomain(effectiveDomain)) {
+        if (!isValidDomain(effectiveDomain))
             // https://www.w3.org/TR/webauthn-2/#sctn-discover-from-external-source (第 5 步)
             return new WebAuthnError({
                 message: `${globalThis.location.hostname} 是一个无效的域名`, code: 'ERROR_INVALID_DOMAIN', cause: error
             });
-        }
-        else if (publicKey.rpId !== effectiveDomain) {
+        else if (publicKey.rpId !== effectiveDomain)
             // https://www.w3.org/TR/webauthn-2/#sctn-discover-from-external-source (第 6 步)
             return new WebAuthnError({
                 message: `信赖方 ID“${publicKey.rpId}”对此域名无效`, code: 'ERROR_INVALID_RP_ID', cause: error
             });
-        }
     }
-    else if (error.name === 'UnknownError') {
+    else if (error.name === 'UnknownError')
         // https://www.w3.org/TR/webauthn-2/#sctn-op-get-assertion (第 1 步)
         // https://www.w3.org/TR/webauthn-2/#sctn-op-get-assertion (第 12 步)
         return new WebAuthnError({
-            message: '身份验证器无法处理指定的选项或创建新的断言签名',
-            code: 'ERROR_AUTHENTICATOR_GENERAL_ERROR', cause: error,
+            message: '身份验证器无法处理指定的选项或创建新的断言签名', code: 'ERROR_AUTHENTICATOR_GENERAL_ERROR', cause: error
         });
-    }
+
     return error;
 }
 

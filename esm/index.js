@@ -7,4 +7,3 @@ export * from './helpers/base64URLStringToBuffer.js';
 export * from './helpers/bufferToBase64URLString.js';
 export * from './helpers/webAuthnAbortService.js';
 export * from './helpers/webAuthnError.js';
-export * from './types/index.js';

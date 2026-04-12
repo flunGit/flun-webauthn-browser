@@ -1,6 +1,12 @@
 import { base64URLStringToBuffer } from './base64URLStringToBuffer.js';
 
-export function toPublicKeyCredentialDescriptor(descriptor) {
+/**
+ * 将描述符中的 Base64URL 字符串 `id` 转换为 ArrayBuffer，以适配 WebAuthn API。
+ * @param {Object} descriptor - 包含 `id` (Base64URL 字符串) 的凭证描述符。
+ * @param {string} descriptor.id
+ * @returns {PublicKeyCredentialDescriptor} 转换后的描述符，可直接用于 WebAuthn。
+ */
+function toPublicKeyCredentialDescriptor(descriptor) {
     const { id } = descriptor;
     return {
         ...descriptor, id: base64URLStringToBuffer(id),
@@ -11,3 +17,5 @@ export function toPublicKeyCredentialDescriptor(descriptor) {
         transports: descriptor.transports,
     };
 }
+
+export { toPublicKeyCredentialDescriptor };
