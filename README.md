@@ -5,7 +5,7 @@
 ### Node LTS 20.x 及以上
 
 ```sh
-npm install flun-webauthn-browser
+npm i flun-webauthn-browser
 ```
 
 ### UMD
