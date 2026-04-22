@@ -5,7 +5,7 @@
  *
  * 此辅助方法与 `bufferToBase64URLString` 配对使用;
  */
-function base64URLStringToBuffer(base64URLString) {
+const base64URLStringToBuffer = base64URLString => {
     // 从 Base64URL 转换为标准 Base64
     const base64 = base64URLString.replace(/-/g, '+').replace(/_/g, '/'),
         /**

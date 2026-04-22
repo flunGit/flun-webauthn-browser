@@ -1,7 +1,9 @@
+# flun-webauthn-browser <!-- omit in toc -->
+![WebAuthn](https://img.shields.io/badge/WebAuthn-Browser_Simplified-blueviolet?style=for-the-badge&logo=WebAuthn)
+[![npm (scoped)](https://img.shields.io/npm/v/flun-webauthn-browser?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/flun-webauthn-browser)
+
+### 本包以 ESM 模块系统编写->未来趋势;如果你用于node项目,只要你的 Node.js 版本大于22.12,可保留CJS `require()` 语法调用,否则请使用 `import` 语法;(浏览器链接或下载本地导入无影响)
 ## 安装
-
-本包可从 **[NPM](https://www.npmjs.com/package/flun-webauthn-browser)**安装：
-
 ### Node LTS 20.x 及以上
 
 ```sh

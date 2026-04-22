@@ -1,11 +1,10 @@
-"use strict";
-
-const { isValidDomain } = require("./isValidDomain.js"), { WebAuthnError } = require("./webAuthnError.js");
+import { isValidDomain } from './isValidDomain.js';
+import { WebAuthnError } from './webAuthnError.js';
 
 /**
  * 尝试推断调用 `navigator.credentials.create()` 后引发错误的原因
  */
-function identifyRegistrationError({ error, options }) {
+const identifyRegistrationError = ({ error, options }) => {
     const { publicKey } = options;
     if (!publicKey) throw Error('options 参数缺少必需的 publicKey 属性');
 
@@ -80,7 +79,6 @@ function identifyRegistrationError({ error, options }) {
             return new WebAuthnError({
                 message: '用户 ID 长度不在 1~64 字节之间', code: 'ERROR_INVALID_USER_ID_LENGTH', cause: error
             });
-
     }
     else if (error.name === 'UnknownError')
         // https://www.w3.org/TR/webauthn-2/#sctn-op-make-cred (第 1 步)
@@ -92,4 +90,4 @@ function identifyRegistrationError({ error, options }) {
     return error;
 }
 
-module.exports = { identifyRegistrationError };
+export { identifyRegistrationError };

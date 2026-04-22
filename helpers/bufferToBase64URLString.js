@@ -4,7 +4,7 @@
  *
  * 辅助方法，与 `base64URLStringToBuffer` 搭配使用
  */
-function bufferToBase64URLString(buffer) {
+const bufferToBase64URLString = buffer => {
     const bytes = new Uint8Array(buffer);
     let str = '';
     for (const charCode of bytes) str += String.fromCharCode(charCode);

@@ -1,5 +1,4 @@
 # 变更日志
-## [1.0.1] - 2026-04-13 11:23
-### 首发:
-  - WebAuthn 前端库,提供简单易用的接口来处理 WebAuthn 认证流程,支持 Passkeys 和 FIDO2 标准;可以安装 或 下载并调用相关文件 或 文件链接->`<script src="https://unpkg.com/flun-webauthn-browser/dist/index.js"></script>`
- - 后端需安装 flun-webauthn-server 配合使用
+## [2.0.0] - 2026-04-22 21:23
+### 较大更新:
+ - 将包从 CJS 完全迁移至 ESM 模块系统,以适配未来发展趋势;如果你用于node项目,只要你的 Node.js 版本大于22.12,可保留CJS `require()` 语法调用,否则请使用 `import` 语法;(浏览器链接或下载本地导入无影响)

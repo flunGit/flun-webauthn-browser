@@ -1,11 +1,10 @@
-"use strict";
-
-const { isValidDomain } = require("./isValidDomain.js"), { WebAuthnError } = require("./webAuthnError.js");
+import { isValidDomain } from './isValidDomain.js';
+import { WebAuthnError } from './webAuthnError.js';
 
 /**
  * 尝试推断调用 `navigator.credentials.get()` 后引发错误的原因
  */
-function identifyAuthenticationError({ error, options }) {
+const identifyAuthenticationError = ({ error, options }) => {
     const { publicKey } = options;
     if (!publicKey) throw Error('options 参数缺少必需的 publicKey 属性');
 
@@ -42,4 +41,4 @@ function identifyAuthenticationError({ error, options }) {
     return error;
 }
 
-module.exports = { identifyAuthenticationError };
+export { identifyAuthenticationError };

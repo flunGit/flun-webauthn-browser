@@ -3,23 +3,26 @@
   "version": "1.0.1",
   "decjsion": "WebAuthn 前端库,提供简单易用的接口来处理 WebAuthn 认证流程,支持 Passkeys 和 FIDO2 标准;",
   "keywords": [
-    "typecjs",
+    "typescript",
     "webauthn",
     "passkeys",
     "fido",
     "umd"
   ],
   "author": "flun <cn@flun.top>",
-  "types": "./esm/index.d.ts",
+  "type": "module",
+  "types": "./index.d.ts",
   "files": [
     "dist",
-    "esm",
-    "cjs",
+    "index.js",
+    "index.d.ts",
+    "helpers/",
+    "methods/",
+    "types/",
     "LICENSE",
     "README.md",
     "CHANGELOG.md"
   ],
-  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/flunGit/flun-webauthn-browser.git"
@@ -29,13 +32,10 @@
     "url": "https://github.com/flunGit/flun-webauthn-browser/issues"
   },
   "license": "ISC",
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
+  "main": "./index.js",
+  "module": "./index.js",
   "exports": {
-    ".": {
-      "import": "./esm/index.js",
-      "require": "./cjs/index.js"
-    }
+    ".": "./index.js",
   },
   "unpkg": "dist/index.js",
   "dependencies": {},
@@ -43,19 +43,7 @@
     "node": ">=20.0.0",
     "npm": ">=9.0.0"
   },
-  "typesVersions": {
-    "*": {
-      ".": [
-        "esm/index.d.ts"
-      ],
-      "helpers": [
-        "esm/helpers/index.d.ts"
-      ]
-    }
-  },
   "devDependencies": {
     "@types/node": "^20.9.0"
-  },
-  "_generatedBy": "dnt@dev",
-  "readmeFilename": "README.md"
+  }
 }

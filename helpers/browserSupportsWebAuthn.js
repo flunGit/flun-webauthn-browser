@@ -7,7 +7,7 @@ const _browserSupportsWebAuthnInternals = { stubThis: value => value };
 /**
  * 判断浏览器是否支持 WebAuthn
  */
-function browserSupportsWebAuthn() {
+const browserSupportsWebAuthn = () => {
     return _browserSupportsWebAuthnInternals.stubThis(globalThis?.PublicKeyCredential !== undefined &&
         typeof globalThis.PublicKeyCredential === 'function');
 }

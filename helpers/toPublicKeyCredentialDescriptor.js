@@ -6,7 +6,7 @@ import { base64URLStringToBuffer } from './base64URLStringToBuffer.js';
  * @param {string} descriptor.id
  * @returns {PublicKeyCredentialDescriptor} 转换后的描述符，可直接用于 WebAuthn。
  */
-function toPublicKeyCredentialDescriptor(descriptor) {
+const toPublicKeyCredentialDescriptor = descriptor => {
     const { id } = descriptor;
     return {
         ...descriptor, id: base64URLStringToBuffer(id),
