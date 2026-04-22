@@ -10,9 +10,9 @@ import { toAuthenticatorAttachment } from '../helpers/toAuthenticatorAttachment.
  * 通过 WebAuthn 证明开始认证器“注册”
  *
  * @param optionsJSON 来自 **flun-webauthn-server** 的 `generateRegistrationOptions()` 的输出
- * @param useAutoRegister （可选）尝试静默使用用户刚刚登录的密码管理器创建一个通行密钥。默认为 `false`
+ * @param useAutoRegister （可选）尝试静默使用用户刚刚登录的密码管理器创建一个通行密钥,默认为 `false`
  */
-async function startRegistration(options) {
+const startRegistration = async options => {
     // 有意检查旧的调用结构，以警告不正确的 API 调用
     if (!options.optionsJSON && options.challenge) {
         console.warn('startRegistration() 的调用方式不正确；将继续尝试使用提供的选项,但应重构此调用以使用预期的调用结构；');
@@ -98,7 +98,7 @@ async function startRegistration(options) {
 /**
  * 当检测到通行密钥提供方拦截 WebAuthn API 调用导致的问题时,发出可见警告
  */
-function warnOnBrokenImplementation(methodName, cause) {
+const warnOnBrokenImplementation = (methodName, cause) => {
     console.warn(`拦截此 WebAuthn API 调用的浏览器扩展错误地实现了 ${methodName}；请向该扩展的开发者报告此问题；\n`, cause);
 }
 

@@ -10,11 +10,11 @@ import { toAuthenticatorAttachment } from '../helpers/toAuthenticatorAttachment.
 /**
  * 通过 WebAuthn 断言开始身份验证器“登录”
  *
- * @param optionsJSON 来自 **@simplewebauthn/server** 的 `generateAuthenticationOptions()` 的输出
+ * @param optionsJSON 来自 **flun-webauthn-server** 的 `generateAuthenticationOptions()` 的输出
  * @param useBrowserAutofill （可选）初始化条件式 UI，以支持通过浏览器自动填充提示进行登录。默认为 `false`;
  * @param verifyBrowserAutofillInput （可选）当 `useBrowserAutofill` 为 `true` 时，确保存在合适的 `<input>` 元素;默认为 `true`;
  */
-async function startAuthentication(options) {
+const startAuthentication = async options => {
     // 有意检查旧的调用结构,以警告不正确的 API 调用
     if (!options.optionsJSON && options.challenge) {
         console.warn("startAuthentication() 调用方式不正确；它将尝试使用提供的选项继续执行,但应重构此调用以使用预期的调用结构；");
