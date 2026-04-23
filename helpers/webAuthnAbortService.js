@@ -1,6 +1,20 @@
+/**
+ * WebAuthn 中止服务的基础类
+ */
 class BaseWebAuthnAbortService {
-    constructor() { this.controller = void 0 }
+    constructor() {
+        /**
+         * 当前活动的 AbortController 实例
+         * @type {AbortController | undefined}
+         */
+        this.controller = undefined;
+    }
 
+    /**
+     * 创建新的 AbortSignal,并中止任何进行中的 WebAuthn 仪式
+     *
+     * @returns {AbortSignal} 可用于 `navigator.credentials.create()` 或 `navigator.credentials.get()` 的 `signal` 选项
+     */
     createNewAbortSignal() {
         // 中止任何现有的 navigator.credentials.create() 或 navigator.credentials.get() 调用
         if (this.controller) {
@@ -12,6 +26,10 @@ class BaseWebAuthnAbortService {
         return newController.signal;
     }
 
+    /**
+     * 手动取消当前正在进行的 WebAuthn 仪式
+     * @returns {void}
+     */
     cancelCeremony() {
         if (this.controller) {
             const abortError = new Error('手动取消现有的 WebAuthn API 调用');
@@ -25,7 +43,9 @@ class BaseWebAuthnAbortService {
  * **flun-webauthn-browser** 的使用者通常不需要使用此服务,但它可以帮助
  * 使用客户端路由的项目开发者更好地控制其用户体验以响应路由导航事件;
  * - 查看定义:@see {@link WebAuthnAbortService}
+ *
+ * @type {BaseWebAuthnAbortService}
  */
 const WebAuthnAbortService = new BaseWebAuthnAbortService();
 
-export { WebAuthnAbortService };
+export { BaseWebAuthnAbortService, WebAuthnAbortService };

@@ -4,6 +4,11 @@ import { WebAuthnError } from './webAuthnError.js';
 /**
  * 尝试推断调用 `navigator.credentials.get()` 后引发错误的原因;
  * - 查看定义:@see {@link identifyAuthenticationError}
+ *
+ * @param {Object} params - 参数对象
+ * @param {Error|DOMException} params.error - 原始错误对象
+ * @param {CredentialRequestOptions} params.options - navigator.credentials.get() 传入的选项
+ * @returns {Error|WebAuthnError} 解析后的错误对象（WebAuthnError 或原始错误）
  */
 const identifyAuthenticationError = ({ error, options }) => {
     const { publicKey } = options;

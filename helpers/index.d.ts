@@ -77,7 +77,7 @@ declare module './identifyRegistrationError.js' {
 /**
  * ```js
  * // 文件导出内容
- * isValidDomain(); // 判断主机域名格式是否正确;
+ * isValidDomain(); // 判断主机名是否符合验证规范;
  * ```
  * - 查看定义:@see {@link isValidDomain}
  */
@@ -170,7 +170,7 @@ declare module './webAuthnError.js' {
  * browserSupportsWebAuthnAutofill();                  // 判断浏览器是否支持条件式UI;
  * identifyAuthenticationError();                      // 尝试推断调用 `navigator.credentials.get()` 后引发错误的原因;
  * identifyRegistrationError();                        // 尝试推断调用 `navigator.credentials.create()` 后引发错误的原因;
- * isValidDomain();                                    // 判断主机域名格式是否正确;
+ * isValidDomain();                                    // 判断主机名是否符合验证规范;
  * platformAuthenticatorIsAvailable();                 // 判断浏览器是否能够与内置身份验证器通信;
  * toAuthenticatorAttachment();                        // 尝试将 `string` 值强制转换为已知的 `AuthenticatorAttachment` 类型
  * toPublicKeyCredentialDescriptor();                  // 将描述符中的Base64URL字符串`id`转换为ArrayBuffer,以适配 WebAuthn API;
