@@ -30,7 +30,7 @@ declare module './startRegistration.js' {
  * 模块导出内容：
  * ```js
  * startAuthentication(); // 通过 WebAuthn 断言开始身份验证器“登录”
- * startRegistration(); // 通过 WebAuthn 证明开始认证器“注册”
+ * startRegistration();   // 通过 WebAuthn 证明开始认证器“注册”
  * ```
  * - 查看定义:@see {@link startAuthentication}、{@link startRegistration}
  */

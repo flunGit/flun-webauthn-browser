@@ -81,16 +81,16 @@
 
     // 导出内部工具（供测试/扩展使用）
     e.WebAuthnAbortService = WebAuthnAbortService;
-    e.WebAuthnError = WebAuthnError;
     e._browserSupportsWebAuthnAutofillInternals = p;
     e._browserSupportsWebAuthnInternals = o;
     e.base64URLStringToBuffer = base64URLStringToBuffer;
+    e.bufferToBase64URLString = bufferToBase64URLString;
     e.browserSupportsWebAuthn = browserSupportsWebAuthn;
     e.browserSupportsWebAuthnAutofill = browserSupportsWebAuthnAutofill;
-    e.bufferToBase64URLString = bufferToBase64URLString;
     e.platformAuthenticatorIsAvailable = () => {
         return browserSupportsWebAuthn() ? PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable() : falsePromise;
     };
+    e.WebAuthnError = WebAuthnError;
 
     // 开始认证（登录）
     e.startAuthentication = async e => {

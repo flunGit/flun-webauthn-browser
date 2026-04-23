@@ -1,9 +1,5 @@
-export * from './methods/startRegistration.js';
-export * from './methods/startAuthentication.js';
-export * from './helpers/browserSupportsWebAuthn.js';
-export * from './helpers/platformAuthenticatorIsAvailable.js';
-export * from './helpers/browserSupportsWebAuthnAutofill.js';
-export * from './helpers/base64URLStringToBuffer.js';
-export * from './helpers/bufferToBase64URLString.js';
-export * from './helpers/webAuthnAbortService.js';
-export * from './helpers/webAuthnError.js';
+export {
+    bufferToBase64URLString, base64URLStringToBuffer, browserSupportsWebAuthn, browserSupportsWebAuthnAutofill,
+    platformAuthenticatorIsAvailable, WebAuthnAbortService, WebAuthnError
+} from './helpers/index.js';
+export * from './methods/index.js';

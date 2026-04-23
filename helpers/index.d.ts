@@ -179,7 +179,7 @@ declare module './webAuthnError.js' {
  * // 类
  * class WebAuthnError{};                              // 自定义错误,用于更细致地说明规范中八种错误被抛出的原因;
  * ```
- * - 查看定义:@see
+ * >查看定义:@see
  * - 类型 {@link WebAuthnErrorCode}
  * - 常量 {@link _browserSupportsWebAuthnInternals}、{@link _browserSupportsWebAuthnAutofillInternals}、{@link WebAuthnAbortService}
  * - 函数 {@link base64URLStringToBuffer}、{@link bufferToBase64URLString}、 {@link browserSupportsWebAuthn}、
@@ -198,6 +198,6 @@ declare module './index.js' {
     export * from './platformAuthenticatorIsAvailable.js';
     export * from './toAuthenticatorAttachment.js';
     export * from './toPublicKeyCredentialDescriptor.js';
-    export * from './WebAuthnAbortService.js';
-    export * from './WebAuthnError.js';
+    export * from './webAuthnAbortService.js';
+    export * from './webAuthnError.js';
 }
