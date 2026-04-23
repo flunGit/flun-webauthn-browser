@@ -1,33 +1,40 @@
-import type {
-    AuthenticationResponseJSON, PublicKeyCredentialRequestOptionsJSON,
-    PublicKeyCredentialCreationOptionsJSON, RegistrationResponseJSON
-} from '../types/index.js';
+import { startAuthentication } from './startAuthentication.js';
+import { startRegistration } from './startRegistration.js';
 
 // =================================== startAuthentication.js ===================================
-export type StartAuthenticationOpts = Parameters<typeof startAuthentication>[0];
-
 /**
- * 通过 WebAuthn 断言开始身份验证器“登录”
- *
- * @param optionsJSON 来自 **flun-webauthn-server** 的 `generateAuthenticationOptions()` 的输出
- * @param useBrowserAutofill （可选）初始化条件式 UI,以支持通过浏览器自动填充提示进行登录;默认为 `false`。
- * @param verifyBrowserAutofillInput （可选）当 `useBrowserAutofill` 为 `true` 时，确保存在合适的 `<input>` 元素;默认为 `true`;
+ * ```js
+ * // 文件导出内容
+ * startAuthentication(); // 通过 WebAuthn 断言开始身份验证器“登录”
+ * ```
+ * - 查看定义:@see {@link startAuthentication}
  */
-export declare function startAuthentication(options: {
-    optionsJSON: PublicKeyCredentialRequestOptionsJSON;
-    useBrowserAutofill?: boolean, verifyBrowserAutofillInput?: boolean;
-}): Promise<AuthenticationResponseJSON>;
+declare module './startAuthentication.js' {
+    export * from './startAuthentication.js';
+}
 
 // =================================== startRegistration.js ===================================
-export type StartRegistrationOpts = Parameters<typeof startRegistration>[0];
-
 /**
- * 通过 WebAuthn 证明开始认证器“注册”
- *
- * @param optionsJSON 来自 **flun-webauthn-server** 的 `generateRegistrationOptions()` 的输出
- * @param useAutoRegister （可选）尝试静默使用用户刚刚登录的密码管理器创建一个通行密钥。默认为 `false`
+ * ```js
+ * // 文件导出内容
+ * startRegistration(); // 通过 WebAuthn 证明开始认证器“注册”
+ * ```
+ * - 查看定义:@see {@link startRegistration}
  */
-export declare function startRegistration(options: {
-    optionsJSON: PublicKeyCredentialCreationOptionsJSON;
-    useAutoRegister?: boolean;
-}): Promise<RegistrationResponseJSON>;
+declare module './startRegistration.js' {
+    export * from './startRegistration.js';
+}
+
+// ================================ 导出入口 ================================
+/**
+ * 模块导出内容：
+ * ```js
+ * startAuthentication(); // 通过 WebAuthn 断言开始身份验证器“登录”
+ * startRegistration(); // 通过 WebAuthn 证明开始认证器“注册”
+ * ```
+ * - 查看定义:@see {@link startAuthentication}、{@link startRegistration}
+ */
+declare module './index.js' {
+    export * from './startAuthentication.js';
+    export * from './startRegistration.js';
+}

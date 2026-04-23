@@ -1,18 +1,28 @@
-import { bufferToBase64URLString } from '../helpers/bufferToBase64URLString.js';
-import { base64URLStringToBuffer } from '../helpers/base64URLStringToBuffer.js';
-import { browserSupportsWebAuthn } from '../helpers/browserSupportsWebAuthn.js';
-import { browserSupportsWebAuthnAutofill } from '../helpers/browserSupportsWebAuthnAutofill.js';
-import { toPublicKeyCredentialDescriptor } from '../helpers/toPublicKeyCredentialDescriptor.js';
-import { identifyAuthenticationError } from '../helpers/identifyAuthenticationError.js';
-import { WebAuthnAbortService } from '../helpers/webAuthnAbortService.js';
-import { toAuthenticatorAttachment } from '../helpers/toAuthenticatorAttachment.js';
+import {
+    bufferToBase64URLString, base64URLStringToBuffer, browserSupportsWebAuthn, browserSupportsWebAuthnAutofill,
+    identifyAuthenticationError, toAuthenticatorAttachment, toPublicKeyCredentialDescriptor, WebAuthnAbortService
+} from '../helpers/index.js';
 
 /**
  * 通过 WebAuthn 断言开始身份验证器“登录”
- *
- * @param optionsJSON 来自 **flun-webauthn-server** 的 `generateAuthenticationOptions()` 的输出
- * @param useBrowserAutofill （可选）初始化条件式 UI，以支持通过浏览器自动填充提示进行登录。默认为 `false`;
- * @param verifyBrowserAutofillInput （可选）当 `useBrowserAutofill` 为 `true` 时，确保存在合适的 `<input>` 元素;默认为 `true`;
+ * - 查看定义:@see {@link startAuthentication}
+ * @param {Object} options - 配置选项
+ * @param {Object} options.optionsJSON - 来自 **flun-webauthn-server** 的 `generateAuthenticationOptions()` 的输出
+ * @param {boolean} [options.useBrowserAutofill=false] - 初始化条件式 UI，以支持通过浏览器自动填充提示进行登录
+ * @param {boolean} [options.verifyBrowserAutofillInput=true] - 当 `useBrowserAutofill` 为 `true` 时,确保存在合适的 `<input>` 元素
+ * @returns {Promise<{
+ *   id: string,
+ *   rawId: string,
+ *   response: {
+ *     authenticatorData: string,
+ *     clientDataJSON: string,
+ *     signature: string,
+ *     userHandle?: string
+ *   },
+ *   type: string,
+ *   clientExtensionResults: AuthenticationExtensionsClientOutputs,
+ *   authenticatorAttachment: string
+ * }>}
  */
 const startAuthentication = async options => {
     // 有意检查旧的调用结构,以警告不正确的 API 调用

@@ -1,16 +1,30 @@
-import { bufferToBase64URLString } from '../helpers/bufferToBase64URLString.js';
-import { base64URLStringToBuffer } from '../helpers/base64URLStringToBuffer.js';
-import { browserSupportsWebAuthn } from '../helpers/browserSupportsWebAuthn.js';
-import { toPublicKeyCredentialDescriptor } from '../helpers/toPublicKeyCredentialDescriptor.js';
-import { identifyRegistrationError } from '../helpers/identifyRegistrationError.js';
-import { WebAuthnAbortService } from '../helpers/webAuthnAbortService.js';
-import { toAuthenticatorAttachment } from '../helpers/toAuthenticatorAttachment.js';
+import {
+    bufferToBase64URLString, base64URLStringToBuffer, browserSupportsWebAuthn, identifyRegistrationError,
+    toAuthenticatorAttachment, toPublicKeyCredentialDescriptor, WebAuthnAbortService
+} from '../helpers/index.js';
 
 /**
  * 通过 WebAuthn 证明开始认证器“注册”
+ * - 查看定义:@see {@link startRegistration}
  *
- * @param optionsJSON 来自 **flun-webauthn-server** 的 `generateRegistrationOptions()` 的输出
- * @param useAutoRegister （可选）尝试静默使用用户刚刚登录的密码管理器创建一个通行密钥,默认为 `false`
+ * @param {Object} options - 配置选项
+ * @param {PublicKeyCredentialCreationOptionsJSON} options.optionsJSON - 来自 **flun-webauthn-server** 的 `generateRegistrationOptions()` 的输出
+ * @param {boolean} [options.useAutoRegister] - 尝试静默使用用户刚刚登录的密码管理器创建一个通行密钥,默认为 `false`
+ * @returns {Promise<{
+ *   id: string,
+ *   rawId: string,
+ *   response: {
+ *     attestationObject: string,
+ *     clientDataJSON: string,
+ *     transports?: AuthenticatorTransport[],
+ *     publicKeyAlgorithm?: COSEAlgorithmIdentifier,
+ *     publicKey?: string,
+ *     authenticatorData?: string
+ *   },
+ *   type: PublicKeyCredentialType,
+ *   clientExtensionResults: AuthenticationExtensionsClientOutputs,
+ *   authenticatorAttachment: AuthenticatorAttachment | null
+ * }>}
  */
 const startRegistration = async options => {
     // 有意检查旧的调用结构，以警告不正确的 API 调用
@@ -97,6 +111,10 @@ const startRegistration = async options => {
 
 /**
  * 当检测到通行密钥提供方拦截 WebAuthn API 调用导致的问题时,发出可见警告
+ *
+ * @param {string} methodName - 被错误实现的 WebAuthn API 方法名称
+ * @param {unknown} cause - 捕获到的原始错误对象
+ * @returns {void}
  */
 const warnOnBrokenImplementation = (methodName, cause) => {
     console.warn(`拦截此 WebAuthn API 调用的浏览器扩展错误地实现了 ${methodName}；请向该扩展的开发者报告此问题；\n`, cause);
