@@ -1,6 +1,7 @@
 import {
-    bufferToBase64URLString, base64URLStringToBuffer, browserSupportsWebAuthn, browserSupportsWebAuthnAutofill,
-    platformAuthenticatorIsAvailable, WebAuthnAbortService, WebAuthnError
+    bufferToBase64URLString, base64URLStringToBuffer, _browserSupportsWebAuthnInternals, browserSupportsWebAuthn,
+    _browserSupportsWebAuthnAutofillInternals, browserSupportsWebAuthnAutofill, platformAuthenticatorIsAvailable,
+    WebAuthnAbortService, WebAuthnError
 } from './helpers/index.js';
 import { startAuthentication, startRegistration } from './methods/index.js';
 
@@ -12,6 +13,8 @@ import { startAuthentication, startRegistration } from './methods/index.js';
  * startRegistration();   // 通过 WebAuthn 证明开始认证器“注册”
  *
  * // 工具
+ * const _browserSupportsWebAuthnInternals={};         // 测试期间对返回值进行桩（stub）处理
+ * const _browserSupportsWebAuthnAutofillInternals={}; // 测试期间模拟返回值;
  * const WebAuthnAbortService = new BaseWebAuthnAbortService(); // 服务单例,用于确保同一时间只有一个 WebAuthn 仪式处于活动状态;
  *
  * base64URLStringToBuffer();                          // 将 Base64URL 编码的字符串转换为 Array Buffer;
@@ -27,7 +30,7 @@ import { startAuthentication, startRegistration } from './methods/index.js';
  * > 登录和注册处理: {@link startAuthentication}、{@link startRegistration}
  *
  * > 工具:
- * >> {@link WebAuthnAbortService}
+ * >> {@link _browserSupportsWebAuthnInternals}、{@link _browserSupportsWebAuthnAutofillInternals}、{@link WebAuthnAbortService}
  *
  * >> {@link base64URLStringToBuffer}、{@link bufferToBase64URLString}、 {@link browserSupportsWebAuthn}、
  * {@link browserSupportsWebAuthnAutofill}、{@link platformAuthenticatorIsAvailable}、
@@ -36,8 +39,9 @@ import { startAuthentication, startRegistration } from './methods/index.js';
  */
 declare module './index.js' {
     export {
-        bufferToBase64URLString, base64URLStringToBuffer, browserSupportsWebAuthn, browserSupportsWebAuthnAutofill,
-        platformAuthenticatorIsAvailable, WebAuthnAbortService, WebAuthnError
+        bufferToBase64URLString, base64URLStringToBuffer, _browserSupportsWebAuthnInternals, browserSupportsWebAuthn,
+        _browserSupportsWebAuthnAutofillInternals, browserSupportsWebAuthnAutofill, platformAuthenticatorIsAvailable,
+        WebAuthnAbortService, WebAuthnError
     } from './helpers/index.js';
     export * from './methods/index.js';
 }
